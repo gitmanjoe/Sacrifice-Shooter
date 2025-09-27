@@ -7,8 +7,11 @@ public class MouseLook : MonoBehaviour
 
 	public float mouseSensitivity = 100f;
 	public Transform playerBody;
+	public Transform gun;
+	public Transform gunModel;
 
 	float xRotation = 0f;
+	float yRotation = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,8 +27,12 @@ public class MouseLook : MonoBehaviour
 
        xRotation -= mouseY;
        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+       yRotation -= mouseX;
+       yRotation = Mathf.Clamp(yRotation, -90f, 90f);
 
        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+       gun.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
        playerBody.Rotate(Vector3.up * mouseX);
+       gunModel.Rotate(Vector3.up * -1f * mouseX);
     }
 }
