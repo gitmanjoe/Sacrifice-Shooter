@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class Raycasting : MonoBehaviour
 {
 	public float baseDamage = 10f;
@@ -12,7 +12,10 @@ public class Raycasting : MonoBehaviour
 	public GameObject healthScript;
 	public Camera fpsCam;
 	public GameObject impactEffect;
-
+	public float fireRate = 0.1f;   // Time in seconds between shots
+        private float nextFireTime = 0f;
+	private bool iswaiting = false;
+	private AudioSource audioSource;
 	//public void TakeDamage(float amount)
     	//{
         //	 healthScript.GetComponent<PlayerMovement>().health -= (int)amount;
@@ -21,17 +24,23 @@ public class Raycasting : MonoBehaviour
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
-
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if(Input.GetButtonDown("Fire1"))
+        	// Check if the fire button is held down and enough time has passed since the last shot
+        	if (Input.GetButton("Fire1") && Time.time >= nextFireTime && gunControlScript.GetComponent<GunControl>().currentGun == 3)
+        	{
+        	    Shoot(); // Call the firing function
+        	    nextFireTime = Time.time + fireRate; // Set the next allowed firing time
+        	}
+		else if (Input.GetButtonDown("Fire1"))
 		{
 			Shoot();
 		}
-	}
+    	}
 
 	void Shoot()
 	{
@@ -56,6 +65,7 @@ public class Raycasting : MonoBehaviour
 				gundmg= 5*baseDamage;
 				break;
 		}
+		audioSource.Play();
 		healthScript.GetComponent<PlayerMovement>().health -= 1;
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCam.transform.position + fpsCam.transform.forward, fpsCam.transform.forward, out hit, range))
@@ -72,4 +82,12 @@ public class Raycasting : MonoBehaviour
 			Destroy(impactGO, 0.2f);
 		}
 	}
+	 
+	IEnumerator Shootevery0_1Seconds()
+	{
+		iswaiting = true;
+		yield return new WaitForSeconds(0.1f);
+		Shoot();
+		iswaiting = false;
+    	}
 }

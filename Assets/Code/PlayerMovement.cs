@@ -5,7 +5,6 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-
 	public CharacterController controller;
 	public TMP_Text myTextBox;
 	public float speed = 12f;

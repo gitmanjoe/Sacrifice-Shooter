@@ -33,20 +33,21 @@ public class Enemy : MonoBehaviour
 	animator.SetBool("Death", true);
 	agent.isStopped = true;
 	isAlive = false;
-	int randomNumber = Random.Range(1, 2); 
+	int randomNumber = Random.Range(1, 5); 
 	if(randomNumber == 1)
 	{
 		GameObject newHealthOrb = Instantiate(healthPrefab, bulletspawn.position, bulletspawn.rotation);
         	HealthTrigger HealthScript = newHealthOrb.GetComponent<HealthTrigger>();
         	HealthScript.health = healthScript;
 	}
-	Destroy(gameObject, 20f);
+	Destroy(gameObject,2f);
     }
     void Start()
     {
         // Get the NavMeshAgent component on the enemy
         agent = GetComponent<NavMeshAgent>();
 	animator = GetComponent<Animator>();
+	agent.speed = 20f;
 
         // Find the player object by tag
         //player = GameObject.FindGameObjectWithTag("Player").transform;
