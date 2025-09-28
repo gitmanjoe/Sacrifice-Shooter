@@ -17,10 +17,12 @@ public class GunControl : MonoBehaviour
 	public GameObject ak;
 	public GameObject sniper;
 
+	
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       currentGun = startingGun;
+	currentGun = startingGun;	
     }
 
     // Update is called once per frame
