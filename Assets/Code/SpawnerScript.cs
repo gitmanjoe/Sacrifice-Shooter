@@ -18,7 +18,7 @@ public class SpawnerScript : MonoBehaviour
     IEnumerator SleepFor30Seconds()
     {
 	iswaiting = true;
-	yield return new WaitForSeconds(30);
+	yield return new WaitForSeconds(15);
         GameObject newEnemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
         Enemy enemyScript = newEnemy.GetComponent<Enemy>();
         enemyScript.player = player;

@@ -13,9 +13,11 @@ public class Enemy : MonoBehaviour
     private bool iswaiting = false;
     public Transform player;  // Reference to the player's position
     private NavMeshAgent agent;  // Reference to the NavMeshAgent
-    public float detectionRange = 10f;  // Range within which the enemy will follow the player
+    public float detectionRange = 1000f;  // Range within which the enemy will follow the player
     private Animator animator;
     public float health = 50f;
+
+    private bool isAlive = true;
     
     public void TakeDamage(float amount)
     {
@@ -29,6 +31,8 @@ public class Enemy : MonoBehaviour
     void Die()
     {
 	animator.SetBool("Death", true);
+	agent.isStopped = true;
+	isAlive = false;
 	int randomNumber = Random.Range(1, 2); 
 	if(randomNumber == 1)
 	{
@@ -103,11 +107,14 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator Shootevery3Seconds()
     {
-	iswaiting = true;
-	GameObject newBullet = Instantiate(bulletPrefab, bulletspawn.position, bulletspawn.rotation);
-        bulletscript bullScript = newBullet.GetComponent<bulletscript>();
-        bullScript.HealthScript = healthScript;
-	yield return new WaitForSeconds(3);
-	iswaiting = false;
+	if(isAlive)
+	{
+		iswaiting = true;
+		GameObject newBullet = Instantiate(bulletPrefab, bulletspawn.position, bulletspawn.rotation);
+		bulletscript bullScript = newBullet.GetComponent<bulletscript>();
+        	bullScript.HealthScript = healthScript;
+		yield return new WaitForSeconds(3);
+		iswaiting = false;
+	}
     }
 }

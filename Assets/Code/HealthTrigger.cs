@@ -7,5 +7,6 @@ public class HealthTrigger : MonoBehaviour
     {
 	health.GetComponent<PlayerMovement>().health += 15;
 	Debug.Log(health.GetComponent<PlayerMovement>().health);
+	Destroy(gameObject);
     }
 }
