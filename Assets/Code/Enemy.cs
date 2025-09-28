@@ -5,13 +5,17 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject bulletPrefab;
+    public GameObject healthScript;
+    public Transform bulletspawn;
+    private bool isshooting = false;
+    private bool iswaiting = false;
     public Transform player;  // Reference to the player's position
     private NavMeshAgent agent;  // Reference to the NavMeshAgent
     public float detectionRange = 10f;  // Range within which the enemy will follow the player
-
     private Animator animator;
-    
     public float health = 50f;
+    
     public void TakeDamage(float amount)
     {
         health -= amount;
@@ -38,7 +42,11 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        // Check if the player is within detection range
+	if (!iswaiting && isshooting)
+	{
+		StartCoroutine(Shootevery3Seconds());
+	}	
+	 // Check if the player is within detection range
 	float distance = Vector3.Distance(transform.position, player.transform.position);
         if (distance <= detectionRange && distance > 10f)
         {
@@ -51,23 +59,24 @@ public class Enemy : MonoBehaviour
 		agent.isStopped = true;
 		FacePlayer();
 	}
-
 	
 	if(distance <= 20f && distance >10f)
 	{
 		animator.SetBool("FiringWalk", true);
 		animator.SetBool("Firing", false);
-		
+		isshooting = true;
 	}
 	else if(distance <= 10f)
 	{
 		animator.SetBool("Firing", true);
 		animator.SetBool("FiringWalk", false);
+		isshooting = true;
 	}
 	else
 	{
 		animator.SetBool("Firing", false);
 		animator.SetBool("FiringWalk", false);
+		isshooting = false;
 	}
     }
 
@@ -83,5 +92,14 @@ public class Enemy : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = targetRotation;
         }
+    }
+    IEnumerator Shootevery3Seconds()
+    {
+	iswaiting = true;
+	GameObject newBullet = Instantiate(bulletPrefab, bulletspawn.position, bulletspawn.rotation);
+        bulletscript bullScript = newBullet.GetComponent<bulletscript>();
+        bullScript.HealthScript = healthScript;
+	yield return new WaitForSeconds(3);
+	iswaiting = false;
     }
 }

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6155026650016508481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417737357687560862}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &417737357687560862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6155026650016508481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.474, z: 0.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1269453868647894026}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1591099892879436769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,7 +97,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3e2725cd2255fb63b855aa4389e799b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 417737357687560862}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e2725cd2255fb63b855aa4389e799b3, type: 3}
       insertIndex: -1
@@ -81,6 +115,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2902297658287378024}
   m_SourcePrefab: {fileID: 100100000, guid: 3e2725cd2255fb63b855aa4389e799b3, type: 3}
+--- !u!4 &1269453868647894026 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3e2725cd2255fb63b855aa4389e799b3, type: 3}
+  m_PrefabInstance: {fileID: 1591099892879436769}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1933681678324111024 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e2725cd2255fb63b855aa4389e799b3, type: 3}
@@ -121,12 +160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aff8453f33f96ddcba411a3723d063f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  bulletPrefab: {fileID: 7393036400257458206, guid: 3cadc4b6649c66af59ad839743cfa3cf, type: 3}
+  healthScript: {fileID: 0}
+  bulletspawn: {fileID: 417737357687560862}
   player: {fileID: 0}
   detectionRange: 50
-  isFiring: 0
-  range: 100
-  fpsCam: {fileID: 0}
-  impactEffect: {fileID: 0}
   health: 50
 --- !u!195 &1135475006343955324
 NavMeshAgent:

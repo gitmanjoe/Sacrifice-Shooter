@@ -13,10 +13,10 @@ public class Raycasting : MonoBehaviour
 	public Camera fpsCam;
 	public GameObject impactEffect;
 
-	public void TakeDamage(float amount)
-    	{
-        	 healthScript.GetComponent<PlayerMovement>().health -= (int)amount;
-    	}
+	//public void TakeDamage(float amount)
+    	//{
+        //	 healthScript.GetComponent<PlayerMovement>().health -= (int)amount;
+    	//}
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
