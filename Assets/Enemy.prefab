@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   bulletPrefab: {fileID: 7393036400257458206, guid: 3cadc4b6649c66af59ad839743cfa3cf, type: 3}
+  healthPrefab: {fileID: 408126576208407001, guid: c86f410be9ca040c9991de40b02955a0, type: 3}
   healthScript: {fileID: 0}
   bulletspawn: {fileID: 417737357687560862}
   player: {fileID: 0}
