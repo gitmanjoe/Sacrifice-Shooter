@@ -9,6 +9,7 @@ public class Raycasting : MonoBehaviour
 	public Animator sniperanimator;
 	public Animator assaultanimator;
 	public GameObject gunControlScript;
+	public GameObject healthScript;
 	public Camera fpsCam;
 	public GameObject impactEffect;
 
@@ -50,6 +51,7 @@ public class Raycasting : MonoBehaviour
 				gundmg= 5*baseDamage;
 				break;
 		}
+		healthScript.GetComponent<PlayerMovement>().health -= 1;
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCam.transform.position + fpsCam.transform.forward, fpsCam.transform.forward, out hit, range))
 		{
