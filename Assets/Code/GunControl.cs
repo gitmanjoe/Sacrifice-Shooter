@@ -11,6 +11,10 @@ public class GunControl : MonoBehaviour
 	public int startingGun = 1;
 	[SerializeField]
 	public int currentGun;
+	
+	public bool shotgun_unlocked = false;
+	public bool assault_unlocked = false;
+	public bool sniper_unlocked = false;
 
 	public GameObject revolver;
 	public GameObject shotgun;
@@ -36,7 +40,7 @@ public class GunControl : MonoBehaviour
 		ak.SetActive(false);
 		sniper.SetActive(false);
 	}
-	if(Input.GetKeyDown(KeyCode.Alpha2))
+	if(Input.GetKeyDown(KeyCode.Alpha2) && shotgun_unlocked)
 	{
 		currentGun = 2;
 		revolver.SetActive(false);
@@ -44,7 +48,7 @@ public class GunControl : MonoBehaviour
 		ak.SetActive(false);
 		sniper.SetActive(false);
 	}
-	if(Input.GetKeyDown(KeyCode.Alpha3))
+	if(Input.GetKeyDown(KeyCode.Alpha3) && assault_unlocked)
 	{
 		currentGun = 3;
 		revolver.SetActive(false);
@@ -52,7 +56,7 @@ public class GunControl : MonoBehaviour
 		ak.SetActive(true);
 		sniper.SetActive(false);
 	}
-	if(Input.GetKeyDown(KeyCode.Alpha4))
+	if(Input.GetKeyDown(KeyCode.Alpha4) && sniper_unlocked)
 	{
 		currentGun = 4;
 		revolver.SetActive(false);

@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
 
 	public CharacterController controller;
-
+	public TMP_Text myTextBox;
 	public float speed = 12f;
 	public float gravity = -9.81f;
 	public float jumpHeight = 3f;
-
+	public int health = 50;
+	public GameObject LosePanel;
 	public Transform groundCheck;
 	public float groundDistance = 0.4f;
 	public LayerMask groundMask;
@@ -18,15 +20,16 @@ public class PlayerMovement : MonoBehaviour
 	Vector3 velocity;
 	bool isGrounded;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
+	if(health <= 0)
+	{
+		LosePanel.SetActive(true);
+		Time.timeScale = 0f;
+		Cursor.lockState = CursorLockMode.None; 
+	}
+	myTextBox.text = health.ToString();
 	isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
 	if(isGrounded && velocity.y < 0)
@@ -44,6 +47,14 @@ public class PlayerMovement : MonoBehaviour
 	if(Input.GetButtonDown("Jump") && isGrounded)
 	{
 		velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+	}
+	if(Input.GetKey("left shift"))
+	{
+		speed = 24f;
+	}
+	else
+	{
+		speed = 12f;
 	}
 
 	velocity.y += gravity * Time.deltaTime;
