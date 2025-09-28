@@ -20,6 +20,18 @@ public class SettingsPanelScript : MonoBehaviour
     {
 	mixer.SetFloat("volume",vol);
     }
+    public void SetSensitivity(float sens)
+    {
+	    PlayerPrefs.SetFloat("Sensitivity", sens);
+    }
+    public void SetQuality(int qualityIndex)
+    {
+	    QualitySettings.SetQualityLevel(qualityIndex);
+    }
+    public void SetFullscreen(bool isFullscreen)
+    {
+	    Screen.fullScreen = isFullscreen;
+    }
     // Update is called once per frame
     void Update()
     {
