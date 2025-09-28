@@ -19084,6 +19084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1383296980}
   - component: {fileID: 1383296981}
+  - component: {fileID: 1383296982}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -19120,10 +19121,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunControl
   startingGun: 1
   currentGun: 0
+  shotgun_unlocked: 0
+  assault_unlocked: 0
+  sniper_unlocked: 0
   revolver: {fileID: 851481664}
   shotgun: {fileID: 1605115483}
   ak: {fileID: 1939364536}
   sniper: {fileID: 148584608}
+--- !u!114 &1383296982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383296979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf25376bfa2da049ca1c793201442aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Raycasting
+  baseDamage: 10
+  range: 100
+  revolveranimator: {fileID: 851481668}
+  shotgunanimator: {fileID: 1605115487}
+  sniperanimator: {fileID: 148584612}
+  assaultanimator: {fileID: 1939364540}
+  gunControlScript: {fileID: 1383296979}
+  fpsCam: {fileID: 1577992903}
+  impactEffect: {fileID: 5024009746357069194, guid: 08c97c2dcce4a11bf88db31688bab522, type: 3}
 --- !u!1 &1394029898
 GameObject:
   m_ObjectHideFlags: 0

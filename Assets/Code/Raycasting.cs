@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class Raycasting : MonoBehaviour
 {
-	public float akDamage = 10f;
+	public float baseDamage = 10f;
 	public float range = 100f;
-
+	public Animator revolveranimator;
+	public Animator shotgunanimator;
+	public Animator sniperanimator;
+	public Animator assaultanimator;
+	public GameObject gunControlScript;
 	public Camera fpsCam;
 	public GameObject impactEffect;
 
@@ -25,6 +29,27 @@ public class Raycasting : MonoBehaviour
 
 	void Shoot()
 	{
+		float gundmg = 0f;
+		int gunnum = gunControlScript.GetComponent<GunControl>().currentGun;
+		switch (gunnum)
+		{
+			case 1:
+				revolveranimator.SetTrigger("Shoot");
+				gundmg = baseDamage;
+				break;
+			case 2:
+				shotgunanimator.SetTrigger("Shoot");
+				gundmg = 2*baseDamage;
+				break;
+			case 3:
+				assaultanimator.SetTrigger("Shoot");
+				gundmg = 3*baseDamage;
+				break;
+			case 4:
+				sniperanimator.SetTrigger("Shoot");
+				gundmg= 5*baseDamage;
+				break;
+		}
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCam.transform.position + fpsCam.transform.forward, fpsCam.transform.forward, out hit, range))
 		{
@@ -33,7 +58,7 @@ public class Raycasting : MonoBehaviour
 			Enemy enemy = hit.transform.GetComponent<Enemy>();
 			if(enemy != null)
 			{
-				enemy.TakeDamage(akDamage);
+				enemy.TakeDamage(gundmg);
 			}
 
 			GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));

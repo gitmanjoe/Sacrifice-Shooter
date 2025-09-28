@@ -18,12 +18,6 @@ public class PlayerMovement : MonoBehaviour
 	Vector3 velocity;
 	bool isGrounded;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +38,14 @@ public class PlayerMovement : MonoBehaviour
 	if(Input.GetButtonDown("Jump") && isGrounded)
 	{
 		velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+	}
+	if(Input.GetKey("left shift"))
+	{
+		speed = 24f;
+	}
+	else
+	{
+		speed = 12f;
 	}
 
 	velocity.y += gravity * Time.deltaTime;
