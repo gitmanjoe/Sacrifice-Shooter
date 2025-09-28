@@ -14,7 +14,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayButtonClicked()
     {
-	SceneManager.LoadScene("Scene", LoadSceneMode.Single); 
+	SceneManager.LoadScene("City-Level", LoadSceneMode.Single); 
     }
 
     public void SettingsButtonClicked()
