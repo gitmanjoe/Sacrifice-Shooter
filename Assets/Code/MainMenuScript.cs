@@ -14,7 +14,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayButtonClicked()
     {
-	SceneManager.LoadScene("SampleScene", LoadSceneMode.Single); 
+	SceneManager.LoadScene("Scene", LoadSceneMode.Single); 
     }
 
     public void SettingsButtonClicked()
