@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
 	animator = GetComponent<Animator>();
 
         // Find the player object by tag
-        //player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
